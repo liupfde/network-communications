@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="外骨骼/1.css" rel="stylesheet">
+    <script src="外骨骼/jquery-3.4.0.min.js"></script>
+</head>
+<body>
+    <h1>外骨骼康复机器人</h1>
+    <div id="row-1" class="row">
+        <h2>肘屈伸</h2>
+        <input type="text" id="row1-I" class="box I"/>
+        <input type="text" class="box first"/>
+        <span>—</span>
+        <input type="text" class="box last"/>
+        <button class="speed">低</button>
+        <button class="speed">中</button>
+        <button class="speed">高</button>
+        <button class="start">启动</button>
+        <button class="stop">停止</button>
+    </div>
+    <div id="row-2" class="row">
+        <h2>腕旋转</h2>
+        <input type="text" id="row2-I" class="box I"/>
+        <input type="text" class="box first"/>
+        <span>—</span>
+        <input type="text" class="box last"/>
+        <button class="speed">低</button>
+        <button class="speed">中</button>
+        <button class="speed">高</button>
+        <button class="start">启动</button>
+        <button class="stop">停止</button>
+    </div>
+    <div id="row-3" class="row">
+        <button id="control">手动控制</button>
+        <button id="reset">复位</button>
+        <button id="emergecy">紧急停止</button>
+    </div>
+    <div id="row-4" class="row">
+        <div>
+            <h2>肌肉疲劳</h2>
+            <input type="text" readonly="readonly" id="tired">
+        </div>
+        <button id="music">康复音乐</button>
+        <button id="guide">操作指南</button>
+    </div>
+</body>
+<script>
+    $(".speed").attr("onoff","off");
+    $(".speed").click(function () {
+        $(this).siblings(".speed").attr("onoff","off");
+        $(this).attr("onoff","on");
+    });
+    for (var i = 0; i < 2; i++) {
+        $(".start").eq(i).click(function () {
+            var name=$(this).parent().attr("id");
+            var I=$(this).siblings().filter(".I").val();
+            var rotate1=$(this).siblings().filter(".first").val();
+            var rotate2=$(this).siblings().filter(".last").val();
+            var speed=$(this).siblings().filter("button[onoff='on']").text();
+            if (speed == "" || I == "" || rotate1 == "" || rotate2 == "") {alert("尚未设置完全");return 0;}
+            alert(I+rotate1+rotate2+speed+name);
+            $.ajax({
+                type:"POST",
+                url:"/getdata",
+                dataType:"json",
+                data:JSON.stringify({'I':I,'rotate1':rotate1,'rotate2':rotate2,'speed':speed,'name': name,'number': 1}),
+                error:function () {
+                    alert("操作失败");
+                },
+                success:function () {
+                    alert("操作成功");
+                }
+            });
+        });
+        $(".stop").eq(i).click(function () {
+            var name=$(this).parent().attr("id");
+            $.ajax({
+                type:"POST",
+                url:"/getdata",
+                dataType:"json",
+                data: JSON.stringify({'name': name,'number': 0}),
+                error:function () {
+                    alert("操作失败");
+                },
+                success:function () {
+                    alert("操作成功");
+                }
+            });
+        });
+    }
+    $("#emergecy").click(function () {
+        $.ajax({
+            type:"POST",
+            url:"/getdata",
+            dataType:"text",
+            data: "emergecy",
+            error:function () {
+                alert("操作失败");
+            },
+            success:function () {
+                alert("操作成功");
+            }
+        });
+    });
+    $("#reset").click(function () {
+        $(".box").val("");
+        $(".speed").val("");
+        $.ajax({
+            type:"POST",
+            url:"/getdata",
+            dataType:"text",
+            data: "reset",
+            error:function () {
+                alert("操作失败");
+            },
+            success:function () {
+                alert("操作成功");
+            }
+        });
+    });
+    $("#music").click(function () {
+        $.ajax({
+            type:"POST",
+            url:"/getdata",
+            dataType:"text",
+            data: "music",
+            error:function () {
+                alert("操作失败");
+            },
+            success:function () {
+                alert("操作成功");
+            }
+        });
+    });
+    $.ajax({
+        type:'post',
+        url:"/getdata",
+        dataType:"text",
+        data: "tirement",
+        error:function () {
+            alert("肌肉疲劳请求失败");
+        },
+        success:function (result) {
+            $("#tired").val(result);
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,126 @@
+
+body{
+    text-align: center;
+    background: #e2f0d9;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+button{
+    cursor: pointer;
+}
+span{
+    color: #4d6d9b;
+    font-size: 30px;
+}
+.row{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px 0;
+}
+h2{
+    margin: 0;
+    float: left;
+    border: #4d6d9b 2px solid;
+    background: #cce8cf;
+    width: 105px;
+    height: 37px;
+    padding-top: 3px;
+}
+h1{
+    margin: 30px;
+}
+.speed{
+    width: 50px;
+    height: 40px;
+    font-size: 22px;
+    color: white;
+    background: #71786c;
+    border: #71786c 1px solid;
+}
+.box{
+    width: 34px;
+    padding: 0 8px;
+    height: 40px;
+    border: #4d6d9b 2px solid;
+    background: #e7e6e6;
+    font-size: 20px;
+}
+.start,.stop{
+    width: 75px;
+    height: 45px;
+    border: #4d6d9b 2px solid;
+    font-size: 20px;
+    color: black;
+}
+.stop{
+    background: red;
+}
+.start{
+    background: #70ad47;
+}
+#reset{
+    width: 180px;
+    height: 60px;
+    border: #4d6d9b 2px solid;
+    color: #42c170;
+    font-size: 30px;
+    font-weight: bolder;
+    background: #fff2cc;
+}
+#emergecy{
+    width: 160px;
+    height: 70px;
+    color: #ffffff;
+    border-radius: 5px;
+    border: #b98800 2px solid;
+    font-size: 30px;
+    font-weight: bolder;
+    background: red;
+}
+#control{
+    width: 180px;
+    height: 60px;
+    border: #4d6d9b 2px solid;
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+    background: #ffe699;
+}
+#tired{
+    width: 165px;
+    height: 45px;
+    border: #4d6d9b 2px solid;
+    background: #cce8cf;
+    font-size: 25px;
+    padding-left: 15px;
+    color: #000000;
+    margin-left: 20px;
+}
+#row-4 div h2{
+    background: #9fd4a5;
+    width: 120px;
+}
+#music,#guide{
+    width: 160px;
+    height: 65px;
+    border: #cde8cf 1px solid;
+    border-radius: 5px;
+    background: #ed7d31;
+    font-size: 30px;
+    font-weight: bold;
+}
+#music{
+    color: white;
+}
+#guide{
+    color: black;
+}
+#row-4 div{
+    display: flex;
+    align-items: center;
+}
+#row-4,#row-3{
+    margin: 50px 0;
+}
