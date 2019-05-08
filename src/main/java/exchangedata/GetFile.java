@@ -1,10 +1,13 @@
-package exchange_data;
+package exchangedata;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * @author tandijie
+ */
 public class GetFile {
     static int size = 1024*20;
     static int num = 0;
